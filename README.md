@@ -13,6 +13,6 @@ short_description: Refined langgraphAgenticAI
 
 # SDLC-Using-Langchain
 
-Implement SDLC based on the below flow diagram. Please find the deployed app in https://huggingface.co/spaces/sunithalv/SDLC-Langchain
+Implement SDLC based on the below flow diagram. Please find the deployed app at https://huggingface.co/spaces/sunithalv/SDLC-Langchain
 
 ![softwareLifeCycle](https://github.com/user-attachments/assets/85b4bce3-d19d-4dfd-9018-774f15531534)
