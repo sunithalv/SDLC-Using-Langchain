@@ -24,14 +24,25 @@ def load_sdlc_app():
       with st.form("sdlc_form"):          
         # User Input for Requirements
         user_requirements = st.text_area("📌 Enter your project requirements:")
-        if st.form_submit_button("🚀 Start SDLC Cycle") and user_requirements.strip():
+        if st.form_submit_button("🚀 Start SDLC Cycle") :
             try:
                 clear_cache_data() #Clear data from previous cycle
+                if user_requirements:
+                    user_requirements = user_requirements.strip()
+                else:
+                    st.error("Please enter your project requirements.")
+                    return
                 # Initialize LLM
                 st.session_state.selected_llm=user_input['selected_llm']
                 if user_input['selected_llm'] == 'Groq':
+                    if not user_input['GROQ_API_KEY']:
+                        st.error("Please enter your Groq API key.")
+                        return
                     obj_llm_config = GroqLLM(user_controls_input=user_input)
                 elif user_input['selected_llm'] == 'OpenAI':
+                    if not user_input['OPENAI_API_KEY']:
+                        st.error("Please enter your OPEN AI API key.")
+                        return
                     obj_llm_config = OpenAILLM(user_controls_input=user_input)
                 else:
                     st.error("Invalid LLM selection.")
@@ -54,6 +65,7 @@ def load_sdlc_app():
 
             except Exception as e:
                 st.error(f"Error: {e}")
+        
     elif st.session_state.page == "sdlc_result": 
         # Add a button to go back
         if st.button("🔙 Restart SDLC Cycle"):
